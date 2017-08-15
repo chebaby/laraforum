@@ -29,7 +29,7 @@ class CreateThreadsTest extends TestCase
     }
 
     /** @test */
-    public function unanthenticated_can_not_create_a_thread()
+    public function guests_can_not_create_a_thread()
     {
     	$this->expectException('Illuminate\Auth\AuthenticationException');
 
@@ -37,5 +37,14 @@ class CreateThreadsTest extends TestCase
        	$thread = make('App\Thread');
 
        	$this->post('/threads', $thread->toArray());
+    }
+
+
+    /** @test */
+    public function guests_can_not_see_the_create_thread_page()
+    {
+    	$this->withExceptionHandling()
+    		->get('/threads/create')
+    		->assertRedirect('/login');
     }
 }

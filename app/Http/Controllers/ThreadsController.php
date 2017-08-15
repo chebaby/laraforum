@@ -10,7 +10,7 @@ class ThreadsController extends Controller
 
 	public function __construct()
 	{
-		$this->middleware('auth')->only(['store']);
+		$this->middleware('auth')->except(['index', 'show']);
 	}
 
     public function index()
@@ -18,6 +18,12 @@ class ThreadsController extends Controller
         $threads = Thread::latest()->get();
 
         return view('threads.index', compact('threads'));
+    }
+
+
+    public function create()
+    {
+    	return view('threads.create');
     }
 
 

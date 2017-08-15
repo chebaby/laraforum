@@ -22,6 +22,7 @@ class ParticipateInForumTest extends TestCase
         // when a user adds a reply to the thread
         $this->post($thread->path() . '/replies', $reply->toArray());
     }
+    
 
     /** @test */
     public function an_authenticated_user_may_participate_in_forum_threads()

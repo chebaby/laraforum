@@ -39,4 +39,10 @@ class Thread extends Model
     {
     	return "/threads/{$this->channel->slug}/{$this->id}";
     }
+
+
+    public function scopeFilter($query, $filters)
+    {
+    	return $filters->apply($query);
+    }
 }

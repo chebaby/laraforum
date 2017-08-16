@@ -11,16 +11,11 @@ class ParticipateInForumTest extends TestCase
     use DatabaseMigrations;
 
     /** @test */
-    public function unauthenticated_user_may_not_add_replies()
+    public function guests_may_not_add_replies()
     {
-    	$this->expectException('Illuminate\Auth\AuthenticationException');
-
-		$user   = create('App\User');
-		$thread = create('App\Thread');
-		$reply  = make('App\Reply');
-
-        // when a user adds a reply to the thread
-        $this->post($thread->path() . '/replies', $reply->toArray());
+    	$this->withExceptionHandling()
+    		->post('/threads/channel-slug/thread-slug/replies', [])
+    		->assertRedirect('/login');
     }
 
 

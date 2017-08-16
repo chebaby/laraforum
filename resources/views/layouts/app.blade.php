@@ -42,7 +42,10 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="/threads">All</a></li>
+                                <li><a href="/threads">All threads</a></li>
+                                @if(auth()->check())
+                                    <li><a href="/threads?by={{auth()->user()->name}}">My threads</a></li>
+                                @endif
                                 <li class="divider"></li>
                                 <li><a href="/threads/create">Create Thread</a></li>
                             </ul>

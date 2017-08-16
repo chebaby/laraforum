@@ -7,10 +7,9 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class ThreadTest extends TestCase
 {
+    use DatabaseMigrations;
 
 	protected $thread;
-    
-    use DatabaseMigrations;
 
     public function setUp()
     {

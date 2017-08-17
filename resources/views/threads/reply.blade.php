@@ -3,7 +3,7 @@
 		
 		<div class="level">
 			<h5 class="flex">
-				<a href="#" title="{{ $reply->owner->name }}">{{ $reply->owner->name }}</a> 
+				<a href="{{ route('profile', $thread->owner) }}" title="{{ $reply->owner->name }}">{{ $reply->owner->name }}</a> 
 				<strong>said</strong> {{ $reply->created_at->diffForHumans() }}...
 			</h5>
 			<form action="/replies/{{ $reply->id }}/favorites" method="POST" role="form">

@@ -9,12 +9,21 @@ class Thread extends Model
 {
 
 	protected $guarded = [];
+	
+
+	protected $with = ['creator', 'channel'];
 
 
 	protected static function boot()
 	{
 		parent::boot();
 
+		// Advantage of global scopes over $with is you can disable
+		// the global scope with withoutGlobalScopes() method
+		// static::addGlobalScope('creator', function($builder) {
+		// 	$builder->with('creator');
+		// });
+		
 		static::addGlobalScope('replyCount', function($builder) {
 			$builder->withCount('replies');
 		});
@@ -24,6 +33,12 @@ class Thread extends Model
     public function replies()
 	{
 		return $this->hasMany(Reply::class);
+					// When we fetch replies for a thread 
+					// a part of that process, we want to include
+					// the count of the favorites relationship
+					//->withCount('favorites')
+					//->with('owner');
+					// BS: replaced with global scope in Reply.php
 	}
 
 

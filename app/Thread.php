@@ -35,7 +35,11 @@ class Thread extends Model
 		// When you deleting the thread, as part of this process
 		// delete also any of it's related replies
 		static::deleting(function($thread) {
-			$thread->replies()->delete();
+			// $thread->replies()->delete();
+			// replaced with the line bellow, so that
+			// the deleting model event in RecordsActivity trait
+			// could be triggered
+			$thread->replies->each->delete();
 		});
 	}
 

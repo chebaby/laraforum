@@ -3,10 +3,14 @@
 namespace App;
 
 use App\Reply;
+use App\RecordsActivity;
 use Illuminate\Database\Eloquent\Model;
 
 class Thread extends Model
 {
+
+	use RecordsActivity;
+	
 
 	protected $guarded = [];
 

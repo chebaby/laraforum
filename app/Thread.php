@@ -9,7 +9,7 @@ class Thread extends Model
 {
 
 	protected $guarded = [];
-	
+
 
 	protected $with = ['creator', 'channel'];
 
@@ -26,6 +26,12 @@ class Thread extends Model
 		
 		static::addGlobalScope('replyCount', function($builder) {
 			$builder->withCount('replies');
+		});
+
+		// When you deleting the thread, as part of this process
+		// delete also any of it's related replies
+		static::deleting(function($thread) {
+			$thread->replies()->delete();
 		});
 	}
 

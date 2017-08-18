@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Thread;
+use App\Reply;
 use Illuminate\Http\Request;
 
 class RepliesController extends Controller
@@ -25,6 +26,16 @@ class RepliesController extends Controller
         ]);
 
         return back()->with('flash', 'Your reply is published');
+    }
+
+
+    public function destroy(Reply $reply)
+    {
+        $this->authorize('delete', $reply);
+
+        $reply->delete();
+
+        return back();
     }
 
 }

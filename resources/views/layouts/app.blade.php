@@ -20,10 +20,13 @@
     </style>
 </head>
 <body style="padding-bottom: 100px;">
+
     <div id="app">
         @include('layouts.nav')
 
         @yield('content')
+
+        <flash message="{{ session('flash') }}"></flash>
     </div>
 
     <!-- Scripts -->

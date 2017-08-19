@@ -798,6 +798,7 @@ window.Vue = __webpack_require__(35);
  */
 
 Vue.component('flash', __webpack_require__(36));
+Vue.component('reply', __webpack_require__(54));
 
 var app = new Vue({
   el: '#app'
@@ -42392,6 +42393,85 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(42)(
+  /* script */
+  __webpack_require__(55),
+  /* template */
+  null,
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "c:\\wamp\\www\\Lab\\Projects\\laraforum\\resources\\assets\\js\\components\\Reply.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-9e452156", Component.options)
+  } else {
+    hotAPI.reload("data-v-9e452156", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 55 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+	props: ['attributes'],
+
+	data: function data() {
+		return {
+			editing: false,
+			body: this.attributes.body
+		};
+	},
+
+
+	methods: {
+		update: function update() {
+			axios.patch('/replies/' + this.attributes.id, {
+				body: this.body
+			});
+
+			this.editing = false;
+
+			flash('Reply updated');
+		}
+	}
+});
 
 /***/ })
 /******/ ]);

@@ -14,6 +14,7 @@ class RepliesController extends Controller
         $this->middleware('auth');
     }
 
+
     public function store($channelSlug, Thread $thread)
     {
         $this->validate(request(), [
@@ -26,6 +27,14 @@ class RepliesController extends Controller
         ]);
 
         return back()->with('flash', 'Your reply is published');
+    }
+
+
+    public function update(Reply $reply)
+    {
+        $this->authorize('update', $reply);
+
+        $reply->update([ 'body' => request('body') ]);
     }
 
 
